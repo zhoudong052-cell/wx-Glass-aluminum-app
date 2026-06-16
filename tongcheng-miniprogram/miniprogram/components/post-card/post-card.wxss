@@ -1,0 +1,47 @@
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.post-card {
+  background-color: #ffffff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 24rpx;
+}
+
+.post-card__pin {
+  background-color: #e54d42;
+  color: #ffffff;
+  font-size: 20rpx;
+  padding: 2rpx 10rpx;
+  border-radius: 6rpx;
+  margin-right: 8rpx;
+}
+
+.post-card__category {
+  color: #07c160;
+  font-size: 24rpx;
+}
+
+.post-card__title {
+  font-size: 32rpx;
+  font-weight: 600;
+  margin: 16rpx 0 8rpx;
+}
+
+.post-card__desc {
+  color: #666666;
+  font-size: 26rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.post-card__price {
+  color: #fa5151;
+  font-weight: 600;
+}

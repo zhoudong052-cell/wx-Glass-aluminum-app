@@ -1,0 +1,15 @@
+<view class="post-card" bindtap="onTap">
+  <view class="post-card__header flex-between">
+    <view class="flex-row">
+      <text class="post-card__pin" wx:if="{{item.pinTop}}">顶</text>
+      <text class="post-card__category">{{item.categoryName}}</text>
+    </view>
+    <text class="text-muted">{{timeText}}</text>
+  </view>
+  <view class="post-card__title">{{item.title}}</view>
+  <view class="post-card__desc" wx:if="{{item.summary}}">{{item.summary}}</view>
+  <view class="post-card__footer flex-between">
+    <text class="text-muted">{{item.city}} · {{item.district}}</text>
+    <text class="post-card__price" wx:if="{{item.price}}">¥{{item.price}}</text>
+  </view>
+</view>

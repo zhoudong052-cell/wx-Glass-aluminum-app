@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "玻铝信息网",
+  "navigationBarBackgroundColor": "#e54d42",
+  "navigationBarTextStyle": "white",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "post-card": "/components/post-card/post-card"
+  }
+}

@@ -1,0 +1,10 @@
+<view class="page-message container">
+  <view class="msg-item card" wx:for="{{list}}" wx:key="id">
+    <view class="flex-between">
+      <text class="msg-title">{{item.title}}</text>
+      <text class="text-muted">{{item.time}}</text>
+    </view>
+    <view class="msg-preview text-muted">{{item.preview}}</view>
+  </view>
+  <view wx:if="{{!list.length}}" class="empty text-muted">暂无消息</view>
+</view>

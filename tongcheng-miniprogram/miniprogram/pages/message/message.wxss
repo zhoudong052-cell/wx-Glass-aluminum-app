@@ -1,0 +1,7 @@
+.msg-title {
+  font-weight: 600;
+}
+
+.msg-preview {
+  margin-top: 12rpx;
+}

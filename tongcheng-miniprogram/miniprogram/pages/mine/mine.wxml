@@ -1,0 +1,79 @@
+<view class="page-mine">
+  <!-- 蓝色顶栏 -->
+  <view class="header" style="padding-top: {{statusBarHeight}}px;">
+    <view class="header-bar flex-between">
+      <view class="header-bar__placeholder" />
+      <view class="header-bar__actions">
+        <text class="header-icon" bindtap="onSettings">⚙</text>
+      </view>
+    </view>
+
+    <view class="header-main flex-between">
+      <view class="user-block flex-row" bindtap="onProfile">
+        <image class="avatar" src="{{avatarUrl}}" mode="aspectFill" />
+        <view class="user-text">
+          <text class="nickname">{{nickName}}</text>
+          <text class="profile-link">我的资料(UID:{{uid}}) ›</text>
+        </view>
+      </view>
+      <view class="member-card" bindtap="onMemberCard">
+        <text class="member-card__title">◆ 会员卡 ›</text>
+        <text class="member-card__sub">{{memberTip}}</text>
+      </view>
+    </view>
+
+    <button wx:if="{{!userInfo}}" class="login-btn" size="mini" bindtap="onGetUserProfile">微信登录</button>
+  </view>
+
+  <!-- 数据统计 -->
+  <view class="stats-row card">
+    <view class="stats-cell" bindtap="onStatTap" data-type="coin">
+      <text class="stats-cell__num">{{stats.coins}}</text>
+      <text class="stats-cell__label">金币</text>
+    </view>
+    <view class="stats-cell" bindtap="onStatTap" data-type="wallet">
+      <text class="stats-cell__num">{{stats.wallet}}</text>
+      <text class="stats-cell__label">钱包</text>
+    </view>
+    <view class="stats-cell" bindtap="onStatTap" data-type="message">
+      <text class="stats-cell__num">{{stats.messages}}</text>
+      <text class="stats-cell__label">消息</text>
+    </view>
+  </view>
+
+  <!-- 我的服务 -->
+  <view class="section card">
+    <view class="section-title">我的服务</view>
+    <view class="icon-grid icon-grid--4">
+      <view
+        class="icon-grid__item"
+        wx:for="{{serviceList}}"
+        wx:key="id"
+        data-action="{{item.action}}"
+        bindtap="onServiceTap"
+      >
+        <view class="icon-grid__icon" style="background-color: {{item.bg}};">{{item.icon}}</view>
+        <text class="icon-grid__name">{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 必备工具 -->
+  <view class="section card">
+    <view class="section-title">必备工具</view>
+    <view class="icon-grid icon-grid--4">
+      <view
+        class="icon-grid__item"
+        wx:for="{{toolList}}"
+        wx:key="id"
+        data-action="{{item.action}}"
+        bindtap="onToolTap"
+      >
+        <view class="icon-grid__icon" style="background-color: {{item.bg}};">{{item.icon}}</view>
+        <text class="icon-grid__name">{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="safe-bottom" />
+</view>

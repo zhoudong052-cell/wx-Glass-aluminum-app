@@ -1,0 +1,15 @@
+<view class="page-category container">
+  <view class="category-grid">
+    <view
+      class="category-item card"
+      wx:for="{{categories}}"
+      wx:key="id"
+      data-id="{{item.id}}"
+      data-name="{{item.name}}"
+      bindtap="onCategoryTap"
+    >
+      <text class="category-item__icon">{{item.icon}}</text>
+      <text class="category-item__name">{{item.name}}</text>
+    </view>
+  </view>
+</view>

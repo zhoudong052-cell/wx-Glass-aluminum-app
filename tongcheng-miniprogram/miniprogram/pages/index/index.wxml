@@ -1,0 +1,104 @@
+<view class="page-index">
+  <!-- 红色页头：搜索区 -->
+  <view class="header-red">
+    <view class="header-red__inner flex-row">
+      <image class="header-logo" src="/images/logo.png" mode="aspectFit" />
+      <view class="header-search flex-row">
+        <text class="search-icon">🔍</text>
+        <input
+          class="search-input"
+          placeholder="招聘求职，找店转店"
+          placeholder-class="search-placeholder"
+          value="{{keyword}}"
+          bindinput="onKeywordInput"
+          confirm-type="search"
+          bindconfirm="onSearch"
+        />
+      </view>
+      <view class="header-msg" bindtap="onMessageTap">💬</view>
+    </view>
+  </view>
+
+  <!-- 3 张轮播图：页头与统计栏之间 -->
+  <swiper
+    class="banner-swiper"
+    indicator-dots="{{true}}"
+    autoplay="{{true}}"
+    interval="{{4000}}"
+    duration="{{500}}"
+    circular="{{true}}"
+    indicator-color="rgba(255,255,255,0.5)"
+    indicator-active-color="#ffffff"
+  >
+    <swiper-item wx:for="{{banners}}" wx:key="*this">
+      <image class="banner-swiper__img" src="{{item}}" mode="aspectFill" />
+    </swiper-item>
+  </swiper>
+
+  <!-- 数据统计栏（变量绑定） -->
+  <view class="stats-bar flex-row">
+    <view class="stats-bar__speaker">📢</view>
+    <view class="stats-bar__items flex-row">
+      <view class="stat-item">
+        <text class="stat-item__label">浏览</text>
+        <text class="stat-item__value">{{stats.viewsText}}</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-item__label">发布</text>
+        <text class="stat-item__value">{{stats.postsText}}</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-item__label">用户</text>
+        <text class="stat-item__value">{{stats.usersText}}</text>
+      </view>
+    </view>
+    <view class="stats-bar__help" bindtap="onHelp">帮助</view>
+  </view>
+
+  <!-- 分类宫格 -->
+  <view class="category-panel card">
+    <view class="category-grid">
+      <view
+        class="category-grid__item"
+        wx:for="{{categories}}"
+        wx:key="id"
+        data-id="{{item.id}}"
+        data-name="{{item.name}}"
+        bindtap="onCategoryTap"
+      >
+        <view class="category-grid__icon">{{item.icon}}</view>
+        <text class="category-grid__name">{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 同城公告 -->
+  <view class="notice-bar flex-row" wx:if="{{notice}}">
+    <text class="notice-bar__tag">同城公告</text>
+    <text class="notice-bar__text">{{notice}}</text>
+  </view>
+
+  <!-- 信息列表 -->
+  <view class="feed-section">
+    <scroll-view class="feed-tabs" scroll-x enable-flex>
+      <view
+        class="feed-tab {{activeTab === item.id ? 'feed-tab--active' : ''}}"
+        wx:for="{{tabs}}"
+        wx:key="id"
+        data-id="{{item.id}}"
+        bindtap="onTabChange"
+      >
+        {{item.name}}
+      </view>
+    </scroll-view>
+
+    <view class="feed-list">
+      <block wx:if="{{list.length}}">
+        <post-card wx:for="{{list}}" wx:key="id" item="{{item}}" />
+      </block>
+      <view wx:else class="empty">
+        <text>{{loading ? '加载中...' : '暂无信息'}}</text>
+      </view>
+    </view>
+  </view>
+</view>

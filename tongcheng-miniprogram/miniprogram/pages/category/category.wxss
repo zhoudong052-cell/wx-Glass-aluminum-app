@@ -1,0 +1,21 @@
+.category-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.category-item {
+  width: 48%;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.category-item__icon {
+  display: block;
+  font-size: 48rpx;
+  margin-bottom: 12rpx;
+}
+
+.category-item__name {
+  font-size: 28rpx;
+}

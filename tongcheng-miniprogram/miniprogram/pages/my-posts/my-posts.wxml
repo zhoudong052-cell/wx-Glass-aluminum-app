@@ -1,0 +1,6 @@
+<view class="page-my-posts">
+  <block wx:if="{{list.length}}">
+    <post-card wx:for="{{list}}" wx:key="id" item="{{item}}" />
+  </block>
+  <view wx:else class="empty">{{loading ? '加载中...' : '暂无发布'}}</view>
+</view>

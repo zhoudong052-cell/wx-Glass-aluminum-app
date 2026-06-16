@@ -1,0 +1,10 @@
+<view class="page-detail container" wx:if="{{detail}}">
+  <view class="card">
+    <view class="detail-title">{{detail.title}}</view>
+    <view class="text-muted">{{detail.categoryName}} · {{detail.city}} {{detail.district}}</view>
+    <view class="detail-price" wx:if="{{detail.price}}">¥{{detail.price}}</view>
+    <view class="detail-content">{{detail.content}}</view>
+    <view class="text-muted">发布于 {{detail.createdAt}}</view>
+  </view>
+  <button type="primary" bindtap="onContact">联系 TA</button>
+</view>

@@ -1,0 +1,126 @@
+<view class="page-publish">
+  <!-- 1. 发布模块（下拉） -->
+  <view class="section card">
+    <view class="section-head flex-between">
+      <text class="section-title">发布模块</text>
+      <text class="section-required">*必选</text>
+    </view>
+    <picker
+      mode="selector"
+      range="{{categories}}"
+      range-key="name"
+      value="{{categoryIndex}}"
+      bindchange="onModuleChange"
+    >
+      <view class="picker-row">
+        <text class="picker-row__label">选择模块</text>
+        <view class="picker-row__value">
+          <text wx:if="{{categoryIndex > 0}}" class="picker-row__text">{{categories[categoryIndex].name}}</text>
+          <text wx:else class="picker-row__placeholder">请选择，如：求职招聘、转店找店</text>
+          <text class="picker-row__arrow">▼</text>
+        </view>
+      </view>
+    </picker>
+  </view>
+
+  <!-- 2. 地方区域（下拉，省 + 市） -->
+  <view class="section card">
+    <view class="section-head flex-between">
+      <text class="section-title">地方区域</text>
+      <text class="section-required">*必选</text>
+    </view>
+    <picker mode="region" level="city" value="{{regionCode}}" bindchange="onRegionChange">
+      <view class="picker-row">
+        <text class="picker-row__label">选择地点</text>
+        <view class="picker-row__value">
+          <text wx:if="{{regionText}}" class="picker-row__text">{{regionText}}</text>
+          <text wx:else class="picker-row__placeholder">请选择全国省/市</text>
+          <text class="picker-row__arrow">▼</text>
+        </view>
+      </view>
+    </picker>
+    <text class="picker-hint text-muted">支持全国地点</text>
+  </view>
+
+  <!-- 3. 发布信息 -->
+  <view class="section card">
+    <view class="section-head">
+      <text class="section-title">发布信息</text>
+      <text class="section-required">*必填</text>
+    </view>
+    <textarea
+      class="content-input"
+      placeholder="请输入你要发布的信息内容…"
+      maxlength="100"
+      value="{{content}}"
+      bindinput="onContentInput"
+      show-confirm-bar="{{false}}"
+    />
+    <text class="char-count text-muted">{{content.length}}/100</text>
+  </view>
+
+  <!-- 4. 联系人与电话 -->
+  <view class="section card">
+    <view class="section-head">
+      <text class="section-title">联系人</text>
+      <text class="section-required">*必填</text>
+    </view>
+    <view class="field-row">
+      <text class="field-label">姓名</text>
+      <input
+        class="field-input"
+        placeholder="请填写联系人姓名"
+        maxlength="20"
+        value="{{contactName}}"
+        bindinput="onContactNameInput"
+      />
+    </view>
+    <view class="field-row field-row--border">
+      <text class="field-label">电话</text>
+      <input
+        class="field-input"
+        type="number"
+        maxlength="11"
+        placeholder="请填写联系电话"
+        value="{{phone}}"
+        bindinput="onPhoneInput"
+      />
+    </view>
+  </view>
+
+  <!-- 5. 信息置顶 -->
+  <view class="section card">
+    <view class="pin-row flex-between">
+      <view>
+        <text class="section-title">信息置顶</text>
+        <text class="pin-desc text-muted">开启后信息优先展示</text>
+      </view>
+      <switch checked="{{pinTop}}" color="#e54d42" bindchange="onPinTopChange" />
+    </view>
+
+    <view class="pin-qr-block" wx:if="{{pinTop}}">
+      <view class="pin-qr-tip">开启置顶需扫描下方二维码完成验证</view>
+      <image
+        class="pin-qr-image"
+        src="{{pinQrImage}}"
+        mode="aspectFit"
+        show-menu-by-longpress="{{true}}"
+      />
+      <button class="scan-btn" size="mini" bindtap="onScanPinQr">
+        {{pinScanned ? '已扫码，点击重新扫描' : '扫描二维码'}}
+      </button>
+      <view class="pin-scan-ok" wx:if="{{pinScanned}}">✓ 扫码验证已通过</view>
+    </view>
+  </view>
+
+  <button class="submit-btn" type="primary" bindtap="onSubmit" disabled="{{submitting}}">
+    {{submitting ? '发布中…' : '确认发布'}}
+  </button>
+
+  <view class="footer-notice">
+    <text class="footer-notice__title">温馨提示</text>
+    <text class="footer-notice__text">
+      为确保平台信息的真实性，请大家发布真实有效的信息。如发布虚假、无效信息，平台将予以永久封号处理。
+    </text>
+  </view>
+</view>

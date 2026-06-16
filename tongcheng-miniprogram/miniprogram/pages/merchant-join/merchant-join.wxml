@@ -1,0 +1,67 @@
+<view class="page-join">
+  <view class="section card">
+    <view class="field-row">
+      <text class="field-label">店铺名称</text>
+      <text class="field-required">*</text>
+      <input class="field-input" placeholder="请输入店铺名称" maxlength="40" value="{{shopName}}" bindinput="onShopNameInput" />
+    </view>
+
+    <picker mode="selector" range="{{categories}}" range-key="name" value="{{categoryIndex}}" bindchange="onCategoryChange">
+      <view class="field-row field-row--picker">
+        <text class="field-label">商品分类</text>
+        <text class="field-required">*</text>
+        <view class="field-picker-value">
+          <text>{{categories[categoryIndex].name}}</text>
+          <text class="arrow">▼</text>
+        </view>
+      </view>
+    </picker>
+
+    <view class="field-row">
+      <text class="field-label">联系电话</text>
+      <text class="field-required">*</text>
+      <input class="field-input" type="number" maxlength="11" placeholder="11位手机号" value="{{phone}}" bindinput="onPhoneInput" />
+    </view>
+  </view>
+
+  <view class="section card">
+    <view class="block-label">店铺介绍 <text class="field-required">*</text></view>
+    <textarea
+      class="intro-input"
+      placeholder="介绍主营产品、服务范围等"
+      maxlength="300"
+      value="{{intro}}"
+      bindinput="onIntroInput"
+    />
+  </view>
+
+  <view class="section card">
+    <view class="block-label">营业执照 <text class="field-required">*</text></view>
+    <view class="upload-grid">
+      <view class="upload-item" wx:if="{{licenseImage}}" bindtap="onChooseLicense">
+        <image class="upload-img" src="{{licenseImage}}" mode="aspectFill" />
+        <text class="upload-del" catchtap="onRemoveLicense">×</text>
+      </view>
+      <view class="upload-add" wx:else bindtap="onChooseLicense">
+        <text class="upload-add__icon">+</text>
+        <text class="upload-add__text">上传执照</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="section card">
+    <view class="block-label">店铺相册 <text class="text-muted">（最多3张）</text></view>
+    <view class="upload-grid">
+      <view class="upload-item" wx:for="{{albumImages}}" wx:key="*this">
+        <image class="upload-img" src="{{item}}" mode="aspectFill" />
+        <text class="upload-del" data-index="{{index}}" catchtap="onRemoveAlbum">×</text>
+      </view>
+      <view class="upload-add" wx:if="{{albumImages.length < 3}}" bindtap="onChooseAlbum">
+        <text class="upload-add__icon">+</text>
+        <text class="upload-add__text">添加图片</text>
+      </view>
+    </view>
+  </view>
+
+  <button class="submit-btn" type="primary" bindtap="onSubmit" loading="{{submitting}}">提交入驻</button>
+</view>

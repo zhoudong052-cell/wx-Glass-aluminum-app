@@ -1,0 +1,35 @@
+<view class="page-membership">
+  <view class="vip-header" wx:if="{{membership && membership.isActive}}">
+    <text class="vip-header__title">当前会员：{{membership.planName}}</text>
+    <text class="vip-header__expire">到期时间：{{expireText}}</text>
+    <text class="vip-header__amount">开通金额 ¥{{membership.amount}}</text>
+  </view>
+  <view class="vip-header vip-header--empty" wx:else>
+    <text>您还不是会员，开通后享受专属特权</text>
+  </view>
+
+  <view class="plan-list">
+    <view
+      class="plan-card {{selectedPlan === item.id ? 'plan-card--active' : ''}}"
+      wx:for="{{plans}}"
+      wx:key="id"
+      data-id="{{item.id}}"
+      bindtap="onSelectPlan"
+    >
+      <text class="plan-card__name">{{item.name}}</text>
+      <text class="plan-card__price">¥{{item.price}}</text>
+      <text class="plan-card__desc">{{item.desc}}</text>
+    </view>
+  </view>
+
+  <view class="tips card">
+    <text class="tips__title">会员说明</text>
+    <text class="tips__line">· 月卡会员 30 天 / 半年会员 180 天 / 年度会员 365 天</text>
+    <text class="tips__line">· 开通时间、支付金额、到期时间均保存在云数据库</text>
+    <text class="tips__line">· 续费将在原到期日基础上顺延</text>
+  </view>
+
+  <button class="buy-btn" type="primary" loading="{{submitting}}" bindtap="onPurchase">
+    {{membership && membership.isActive ? '续费会员' : '立即开通'}}
+  </button>
+</view>

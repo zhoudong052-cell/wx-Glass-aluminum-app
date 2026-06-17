@@ -29,7 +29,7 @@
     "ignore": [],
     "include": []
   },
-  "appid": "wx4cbd5e46e1ff62c0",
+  "appid": "你的微信id",
   "editorSetting": {},
   "libVersion": "3.16.1",
   "cloudfunctionTemplateRoot": "cloudfunctionTemplate/"
